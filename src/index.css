@@ -1,0 +1,280 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
+
+.preloader-overlay {
+	display: flex;
+	background-color: rgba(255, 255, 255, 0.8);
+	/* width: 100vw;
+	height: 100vh; */
+	position: absolute;
+	right: 0;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding-left: 15px;
+	padding-right: 15px;
+	box-sizing: border-box;
+	backdrop-filter: blur(20px);
+	z-index: 1;
+	visibility: visible;
+	transition: all 5s ease-out;
+
+}
+
+.remove-overlay {
+	visibility: hidden;
+	z-index: -1;
+	/* width: 0;
+	height:0; */
+	transition: all 5s ease-out;
+}
+
+.demo-container {
+	width: 300px;
+	margin: auto;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.progress-bar {
+	height: 4px;
+	background-color: rgba(5, 114, 206, 0.2);
+	width: 100%;
+	overflow: hidden;
+}
+
+.progress-bar-value {
+	width: 100%;
+	height: 100%;
+	background-color: rgb(5, 114, 206);
+	animation: indeterminateAnimation 1s infinite linear;
+	transform-origin: 0% 50%;
+}
+
+@keyframes indeterminateAnimation {
+	0% {
+		transform: translateX(0) scaleX(0);
+	}
+
+	40% {
+		transform: translateX(0) scaleX(0.4);
+	}
+
+	100% {
+		transform: translateX(100%) scaleX(0.5);
+	}
+}
+
+/* canvas {
+	width: 100%;
+	height: 100px;
+	display: block;
+} */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+h1,
+h4 {
+	text-align: center;
+}
+
+h4 {
+	padding-top: 8px;
+	padding-bottom: 15px;
+	color:rgb(5, 114, 206);
+}
+
+body {
+	/* width: 100vw;
+	height: 95vh; */
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	cursor : grab;
+}
+
+
+/* 
+.scene {
+	width: 100vw;
+	height: 100vh;
+} */
+
+.artistName,
+.artName {
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 1.45em;
+}
+
+.artName {
+	font-style: italic;
+}
+
+.artName span {
+	font-weight: normal;
+	display: inline-block;
+}
+
+.artTech {
+	font-size: 20px;
+	padding-bottom: 15px;
+}
+
+.artDesc {
+	font-size: 16px;
+	line-height: 1.45em;
+}
+
+.annotation {
+	position: absolute;
+	bottom: 2%;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	margin: auto;
+	margin-left: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 1.8em;
+	width: 95%;
+	color: #000;
+	background: rgba(255, 255, 255, 0.8);
+	line-height: 1.2;
+	transition: opacity .5s;
+	margin: 0 auto;
+	display: none;
+	box-sizing: border-box;
+}
+
+
+.empty-annotation {
+	display: none;
+}
+
+.showAnnotation {
+	display: block;
+}
+
+.annotation-exit {
+	color: #fff;
+	position: absolute;
+	top: 15px;
+	right: 15px;
+	width: 30px;
+	height: 30px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	font-size: 16px;
+	line-height: 30px;
+	text-align: center;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 99;
+}
+
+.change {
+	top: 50%;
+}
+
+
+#number {
+	position: absolute;
+	z-index: -1;
+}
+
+img {
+	display:block;
+	width:100%;
+	height:100%;
+}
+
+.tips-item {
+	display:flex;
+	align-items: center;
+	column-gap: 8px;
+	padding-top:10px;
+	padding-bottom:10px;
+}
+
+.tips-img {
+	max-width:20px;
+}
+
+.tips-overlay {
+	margin-top:20px;
+	border: 1px solid #7d7d7d;
+    padding: 10px 30px 10px 30px;
+}
