@@ -1,9 +1,20 @@
 import "@src/index.css";
+import React, { useEffect } from "react";
+
 
 const Loading = () => {
+  useEffect(() => {
+
+    const script = document.createElement("script");
+    script.src = "http://localhost:5173/src/three.js";
+    script.async = true;
+    script.defer = true;
+    script.type='module'
+    document.body.append(script);
+     }, []);
   return (
     <>
-      <div className="preloader_overlay">
+      <div className="preloader-overlay">
         <h1 className="load-h1">Virtual Gallery POC</h1>
         <h4 className="load-h4">Stay Tuned! Loading assets...</h4>
         <div className="demo-container">
@@ -257,11 +268,7 @@ const Loading = () => {
       </div>
 
       <div className="empty-annotation"></div>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/89/three.min.js" defer async></script>
-      <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/123879/OrbitControls.js" defer async></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/16.7.0/Tween.js" defer async></script>
-      <script type="module" src="@src/three.js" defer async></script>
+      {/* <script type='module' src='../three.js'></script> */}
     </>
   );
 };

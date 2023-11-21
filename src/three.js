@@ -1,13 +1,15 @@
-import * as THREE from 'three';
+// import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import axios from 'axios';
+
+import * as THREE from 'react-three-fiber'
+
 
      //the renderer
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
-
 
 //mouse cursor
 window.addEventListener('pointerup', (e) => {
@@ -140,7 +142,7 @@ function updateCameraOrbit() {
     camera.getWorldDirection(forward);
 
     orbit.target.copy(camera.position).add(forward);
-};
+}
 
 orbit.update();
 
@@ -368,8 +370,8 @@ function onMouseClick(event) {
         event.stopImmediatePropagation();
         event.stopPropagation();
         event.preventDefault();
-    };
-};
+    }
+}
 
 window.addEventListener('pointerdown', onMouseClick, false);
 
@@ -450,7 +452,7 @@ window.addEventListener('pointerdown', (e) => {
         e.stopImmediatePropagation();
         e.stopPropagation();
         e.preventDefault();
-    };
+    }
 });
 
 

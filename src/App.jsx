@@ -1,7 +1,7 @@
 import React, {  Suspense } from 'react'
 import {  Route, Routes, BrowserRouter} from 'react-router-dom'
 import './scss/style.scss'
-import Loading from '@components/GalleryLoading.jsx'
+import Loading from '@src/views/pages/GalleryLoading.jsx'
 
 const loading = (
   <div className="pt-3 text-center">
