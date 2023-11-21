@@ -3,9 +3,9 @@ import "@src/index.css";
 const Loading = () => {
   return (
     <>
-      <div className="preloader-overlay">
-        <h1>Virtual Gallery POC</h1>
-        <h4>Stay Tuned! Loading assets...</h4>
+      <div className="preloader_overlay">
+        <h1 className="load-h1">Virtual Gallery POC</h1>
+        <h4 className="load-h4">Stay Tuned! Loading assets...</h4>
         <div className="demo-container">
           <div className="progress-bar">
             <div className="progress-bar-value"></div>

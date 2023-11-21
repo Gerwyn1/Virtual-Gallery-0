@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -65,9 +65,9 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */
 
-.preloader-overlay {
+.preloader_overlay {
 	display: flex;
 	background-color: rgba(255, 255, 255, 0.8);
 	/* width: 100vw;
@@ -145,12 +145,12 @@ button:focus-visible {
 	padding: 0;
 }
 
-h1,
-h4 {
+.load-h1,
+.load-h4 {
 	text-align: center;
 }
 
-h4 {
+.load-h4 {
 	padding-top: 8px;
 	padding-bottom: 15px;
 	color:rgb(5, 114, 206);
@@ -159,11 +159,11 @@ h4 {
 body {
 	/* width: 100vw;
 	height: 95vh; */
-	position: relative;
+	/* position: relative; */
 	margin: 0;
 	padding: 0;
 	font-family: Arial, Helvetica, sans-serif;
-	cursor : grab;
+	/* cursor : grab; */
 }
 
 

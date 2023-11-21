@@ -1,7 +1,7 @@
 import React, {  Suspense } from 'react'
 import {  Route, Routes, BrowserRouter} from 'react-router-dom'
 import './scss/style.scss'
-import Loading from '@components/GalleryLoading'
+import Loading from '@components/GalleryLoading.jsx'
 
 const loading = (
   <div className="pt-3 text-center">
@@ -19,7 +19,6 @@ const Page404 = React.lazy(() => import('@views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('@views/pages/page500/Page500'))
 
 const App = () =>  {
-  console.log('app 2')
     return (
       <BrowserRouter>
         <Suspense fallback={loading}>
