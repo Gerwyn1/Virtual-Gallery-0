@@ -1,12 +1,11 @@
 import "@src/index.css";
 import React, { useEffect } from "react";
 
-
 const Loading = () => {
   useEffect(() => {
 
     const script = document.createElement("script");
-    script.src = "http://localhost:5173/src/three.js";
+    script.src = "/src/three.js";
     script.async = true;
     script.defer = true;
     script.type='module'
