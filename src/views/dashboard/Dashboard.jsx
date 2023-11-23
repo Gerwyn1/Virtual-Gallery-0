@@ -52,6 +52,10 @@ import avatar6 from '../../assets/images/avatars/6.jpg'
 
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
+import { useNavigate } from 'react-router-dom'
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
+import { useCookies } from 'react-cookie'
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
@@ -176,6 +180,30 @@ const Dashboard = () => {
       activity: 'Last week',
     },
   ]
+
+    const cookie = Cookies.get('jwt');
+  console.log(cookie)
+  console.log(document.cookie);
+  const allCookies = Cookies.get();
+console.log(allCookies);
+
+
+  const navigate = useNavigate();
+
+  // console.log(Cookies.get('jwt'))
+  // const [cookies, setCookie] = useCookies(['jwt']);
+  // console.log(cookies)
+
+  useEffect(() => {
+  (async() => {
+    // const token = cookieStore.get('jwt');
+    // if (!token) {
+    //   navigate.push('/login');
+    //   return;
+    // }
+  })();
+  }, [])
+  
 
   return (
     <>

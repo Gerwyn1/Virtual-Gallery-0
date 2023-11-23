@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   CButton,
   CCard,
@@ -13,8 +12,74 @@ import {
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react'
 import { cilLockLocked, cilUser } from '@coreui/icons'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from '@src/api/axios';
+import Cookies from 'js-cookie'
+import { useEffect } from 'react'
+import { useCookies } from 'react-cookie';
 
 const Register = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    username: '',
+    email:'',
+    password: '',
+    repeatPassword: '',
+  });
+
+  console.log(Cookies.get('jwt'));
+
+  const controller = new AbortController();
+//   const [cookies, setCookie] = useCookies(['jwt']);
+//   console.log(formData);
+//   console.log('useCookies: ', cookies)
+
+//   const cookie = Cookies.get('jwt');
+//   console.log(cookie)
+//   console.log(document.cookie);
+//   const allCookies = Cookies.get();
+// console.log(allCookies);
+
+// useEffect(() => {
+//   // Retrieve the 'jwt' cookie
+//   const jwtCookie = Cookies.get('jwt');
+
+//   console.log('JWT Cookie:', jwtCookie);
+// }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('/api/users', formData, {
+        signal: controller.signal,
+        credentials : 'include',
+      });
+      console.log(response.data);
+      Cookies.set('token', response.data.token, { expires: 7, secure: true });
+      console.log(Cookies);
+      console.log(Cookies.get('token'));
+      console.log(Cookies.get('token'));
+      setFormData({
+        username: '',
+        email:'',
+        password: '',
+        repeatPassword: '',
+      });
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
@@ -22,18 +87,18 @@ const Register = () => {
           <CCol md={9} lg={7} xl={6}>
             <CCard className="mx-4">
               <CCardBody className="p-4">
-                <CForm>
+                <CForm onSubmit={handleSubmit}>
                   <h1>Register</h1>
                   <p className="text-medium-emphasis">Create your account</p>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" />
+                    <CFormInput placeholder="Username" autoComplete="username" onChange={handleChange} value={formData.username} name="username"/>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
-                    <CFormInput placeholder="Email" autoComplete="email" />
+                    <CFormInput placeholder="Email" autoComplete="email" onChange={handleChange} value={formData.email} name="email"/>
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -43,6 +108,9 @@ const Register = () => {
                       type="password"
                       placeholder="Password"
                       autoComplete="new-password"
+                      onChange={handleChange}
+                      value={formData.password}
+                      name="password"
                     />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
@@ -53,10 +121,13 @@ const Register = () => {
                       type="password"
                       placeholder="Repeat password"
                       autoComplete="new-password"
+                      onChange={handleChange}
+                      value={formData.repeatPassword}
+                      name="repeatPassword"
                     />
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton color="success">Create Account</CButton>
+                    <CButton type='submit' color="success">Create Account</CButton>
                   </div>
                 </CForm>
               </CCardBody>
