@@ -52,10 +52,13 @@ import avatar6 from '../../assets/images/avatars/6.jpg'
 
 import WidgetsBrand from '../widgets/WidgetsBrand'
 import WidgetsDropdown from '../widgets/WidgetsDropdown'
-import { useNavigate } from 'react-router-dom'
-import Cookies from 'js-cookie'
 import { useEffect } from 'react'
-import { useCookies } from 'react-cookie'
+import { useNavigate, Navigate } from 'react-router-dom'
+// import Cookies from 'js-cookie'
+// import { useEffect} from 'react'
+// // import {Redirect} from 'react-router-dom'
+// import { useCookies } from 'react-cookie'
+// import { isAuthenticated } from '../../auth/auth'
 
 const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
@@ -181,28 +184,35 @@ const Dashboard = () => {
     },
   ]
 
-    const cookie = Cookies.get('jwt');
-  console.log(cookie)
-  console.log(document.cookie);
-  const allCookies = Cookies.get();
-console.log(allCookies);
+  // const navigate = useNavigate();
+
+  // if (!isAuthenticated()) {
+  //   // Redirect to the login page or another route
+  //   <Navigate to="/login" />
+  // }
+
+//     const cookie = Cookies.get('jwt');
+//   console.log(cookie)
+//   console.log(document.cookie);
+//   const allCookies = Cookies.get();
+// console.log(allCookies);
 
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // console.log(Cookies.get('jwt'))
   // const [cookies, setCookie] = useCookies(['jwt']);
   // console.log(cookies)
 
-  useEffect(() => {
-  (async() => {
+  // useEffect(() => {
+  // (async() => {
     // const token = cookieStore.get('jwt');
     // if (!token) {
     //   navigate.push('/login');
     //   return;
     // }
-  })();
-  }, [])
+  // })();
+  // }, [])
   
 
   return (

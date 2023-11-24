@@ -82,6 +82,12 @@ const App = () => {
               element={<DefaultLayout />}
               // auth={auth}
             />
+            {/* <Route
+              path="*"
+              name="Home"
+              element={'hello world'}
+              // auth={auth}
+            /> */}
           </Routes>
         </Suspense>
       </BrowserRouter>

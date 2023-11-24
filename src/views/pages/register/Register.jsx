@@ -13,12 +13,12 @@ import {
 import CIcon from "@coreui/icons-react";
 import { cilLockLocked, cilUser } from "@coreui/icons";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import axios from "@src/api/axios";
 import Cookies from "js-cookie";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
-import useRefreshToken from "../../../@hooks/useRefreshToken";
+// import useRefreshToken from "../../../@hooks/useRefreshToken";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const Register = () => {
     password: "",
     repeatPassword: "",
   });
-  const refresh = useRefreshToken();
+  // const refresh = useRefreshToken();
 
   console.log(Cookies.get("jwt"));
 
@@ -54,12 +54,15 @@ const Register = () => {
     event.preventDefault();
 
     try {
+      console.log('sending request')
       const response = await axios.post("/api/users", formData, {
         signal: controller.signal,
-        // credentials: "include",
-        // withCredentials: true,
+        credentials: "include",
+        withCredentials: true,
       });
-      console.log(response.data);
+      console.log(response)
+      localStorage.setItem("jwt", response.data.token);
+      console.log('set jwt in local storage')
       // Cookies.set("token", response.data.token, {
       //   sameSite: "strict",
       //   path: "/",
@@ -76,6 +79,7 @@ const Register = () => {
         password: "",
         repeatPassword: "",
       });
+      
     } catch (error) {
       console.error(error);
     }
@@ -87,6 +91,12 @@ const Register = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+  const jwtToken = localStorage.getItem('jwt');
+  useEffect(() => {
+      jwtToken ? navigate('/') : null; 
+  }, [jwtToken])
+  
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
