@@ -9,65 +9,73 @@ import {
   CInputGroup,
   CInputGroupText,
   CRow,
-} from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from '@src/api/axios';
-import Cookies from 'js-cookie'
-import { useEffect } from 'react'
-import { useCookies } from 'react-cookie';
+} from "@coreui/react";
+import CIcon from "@coreui/icons-react";
+import { cilLockLocked, cilUser } from "@coreui/icons";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "@src/api/axios";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import useRefreshToken from "../../../@hooks/useRefreshToken";
 
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    username: '',
-    email:'',
-    password: '',
-    repeatPassword: '',
+    username: "",
+    email: "",
+    password: "",
+    repeatPassword: "",
   });
+  const refresh = useRefreshToken();
 
-  console.log(Cookies.get('jwt'));
+  console.log(Cookies.get("jwt"));
 
   const controller = new AbortController();
-//   const [cookies, setCookie] = useCookies(['jwt']);
-//   console.log(formData);
-//   console.log('useCookies: ', cookies)
+  //   const [cookies, setCookie] = useCookies(['jwt']);
+  //   console.log(formData);
+  //   console.log('useCookies: ', cookies)
 
-//   const cookie = Cookies.get('jwt');
-//   console.log(cookie)
-//   console.log(document.cookie);
-//   const allCookies = Cookies.get();
-// console.log(allCookies);
+  //   const cookie = Cookies.get('jwt');
+  //   console.log(cookie)
+  //   console.log(document.cookie);
+  //   const allCookies = Cookies.get();
+  // console.log(allCookies);
 
-// useEffect(() => {
-//   // Retrieve the 'jwt' cookie
-//   const jwtCookie = Cookies.get('jwt');
+  // useEffect(() => {
+  //   // Retrieve the 'jwt' cookie
+  //   const jwtCookie = Cookies.get('jwt');
 
-//   console.log('JWT Cookie:', jwtCookie);
-// }, []);
+  //   console.log('JWT Cookie:', jwtCookie);
+  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const response = await axios.post('/api/users', formData, {
+      const response = await axios.post("/api/users", formData, {
         signal: controller.signal,
-        credentials : 'include',
+        // credentials: "include",
+        // withCredentials: true,
       });
       console.log(response.data);
-      Cookies.set('token', response.data.token, { expires: 7, secure: true });
-      console.log(Cookies);
-      console.log(Cookies.get('token'));
-      console.log(Cookies.get('token'));
+      // Cookies.set("token", response.data.token, {
+      //   sameSite: "strict",
+      //   path: "/",
+      //   expires: new Date(new Date().getTime() + 25 * 1000),
+      //   httpOnly: true,
+      //   // secure: true,
+      // });
+      // console.log(Cookies);
+      // console.log(Cookies.get("token"));
+      // console.log(Cookies.get("token"));
       setFormData({
-        username: '',
-        email:'',
-        password: '',
-        repeatPassword: '',
+        username: "",
+        email: "",
+        password: "",
+        repeatPassword: "",
       });
-
     } catch (error) {
       console.error(error);
     }
@@ -94,11 +102,23 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" onChange={handleChange} value={formData.username} name="username"/>
+                    <CFormInput
+                      placeholder="Username"
+                      autoComplete="username"
+                      onChange={handleChange}
+                      value={formData.username}
+                      name="username"
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
-                    <CFormInput placeholder="Email" autoComplete="email" onChange={handleChange} value={formData.email} name="email"/>
+                    <CFormInput
+                      placeholder="Email"
+                      autoComplete="email"
+                      onChange={handleChange}
+                      value={formData.email}
+                      name="email"
+                    />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>
@@ -127,7 +147,9 @@ const Register = () => {
                     />
                   </CInputGroup>
                   <div className="d-grid">
-                    <CButton type='submit' color="success">Create Account</CButton>
+                    <CButton type="submit" color="success">
+                      Create Account
+                    </CButton>
                   </div>
                 </CForm>
               </CCardBody>
@@ -136,7 +158,7 @@ const Register = () => {
         </CRow>
       </CContainer>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
