@@ -800,6 +800,7 @@ const modelWall = [
 let loader = new GLTFLoader();
 modelWall.forEach(modelDetails => {
     const { gltf, scale, position, link, rotate, color } = modelDetails;
+    console.log(gltf)
     loader.load(gltf, ({ scene }) => {
         scene.traverse(child => {
             child.userData.link = link;
@@ -825,6 +826,7 @@ modelWall.forEach(modelDetails => {
 models.forEach(modelDetails => {
     const { gltf, scale, position, link, rotate } = modelDetails;
     loader.load(gltf, ({ scene }) => {
+        console.log(gltf)
         scene.traverse(child => {
             child.userData.link = link;
             child.frustumCulled = false;
@@ -1364,42 +1366,42 @@ const backDrop = [
 ]
 
 // //group the meshs
-// const groupMesh = new THREE.Group();
-// scene.add(groupMesh);
+const groupMesh = new THREE.Group();
+scene.add(groupMesh);
 
-// artworks.forEach(artDetails => {
-//     const { img, position, dimension, annotationClass, artId, rotateX, rotateY, rotateZ } = artDetails;
-//     let artTexture = new THREE.TextureLoader().load(img);
-//     let mesh = new THREE.Mesh(
+artworks.forEach(artDetails => {
+    const { img, position, dimension, annotationClass, artId, rotateX, rotateY, rotateZ } = artDetails;
+    let artTexture = new THREE.TextureLoader().load(img);
+    let mesh = new THREE.Mesh(
 
-//         new THREE.BoxGeometry(...dimension),
-//         new THREE.MeshBasicMaterial({
-//             map: artTexture,
-//             transparent: true,
-//         }),
+        new THREE.BoxGeometry(...dimension),
+        new THREE.MeshBasicMaterial({
+            map: artTexture,
+            transparent: true,
+        }),
 
-//     );
+    );
 
 //     //important for color management
-//     artTexture.encoding = THREE.sRGBEncoding
-//     artTexture.wrapS = THREE.RepeatWrapping
-//     artTexture.wrapT = THREE.RepeatWrapping
-//     artTexture.magFilter = THREE.NearestFilter
+    artTexture.encoding = THREE.sRGBEncoding
+    artTexture.wrapS = THREE.RepeatWrapping
+    artTexture.wrapT = THREE.RepeatWrapping
+    artTexture.magFilter = THREE.NearestFilter
 
-//     mesh.frustumCulled = false;
+    mesh.frustumCulled = false;
 
-//     mesh.annotationClass = annotationClass;
+    mesh.annotationClass = annotationClass;
 
-//     scene.add(mesh);
-//     groupMesh.add(mesh);
+    scene.add(mesh);
+    groupMesh.add(mesh);
 
 
-//     mesh.position.set(...position);
-//     mesh.rotation.x = rotateX;
-//     mesh.rotation.y = rotateY;
-//     mesh.rotation.z = rotateZ;
+    mesh.position.set(...position);
+    mesh.rotation.x = rotateX;
+    mesh.rotation.y = rotateY;
+    mesh.rotation.z = rotateZ;
 
-// });
+});
 
 //artLight
 artLight.forEach(artLights => {

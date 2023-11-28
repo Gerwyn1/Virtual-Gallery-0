@@ -117,9 +117,16 @@ const Register = () => {
     //   return;
     // });
 
+    const form = new FormData();
+    // form.append('profile_image', formData.profile_image);
+    // form.append('banner_image', formData.banner_image);
+      Object.entries(formData).forEach(([name, value]) => {
+        form.append(name, value);
+      });
+
     try {
       console.log("sending request");
-      const response = await axios.post("/api/users", formData, {
+      const response = await axios.post("/api/users", form, {
         signal: controller.signal,
         credentials: "include",
         withCredentials: true,
@@ -169,10 +176,10 @@ const Register = () => {
     }));
   };
 
-  const jwtToken = localStorage.getItem("jwt");
   useEffect(() => {
+    const jwtToken = localStorage.getItem("jwt");
     jwtToken ? navigate("/") : null;
-  }, [jwtToken]);
+  }, []);
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">
@@ -329,32 +336,30 @@ const Register = () => {
                     />
                   </CInputGroup>
 
-                  <CInputGroup className="mb-3">
-                    <FileBase64
-                      multiple={false}
-                      onDone={({ base64 }) => {
-                        setFormData((prevFormData) => ({
-                          ...prevFormData,
-                          profile_image: base64,
-                          banner_image: base64,
-                        }));
-                      }}
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <FileBase64
-                      multiple={false}
-                      onDone={({ base64 }) => {
-                        setFormData((prevFormData) => ({
-                          ...prevFormData,
-                          profile_image: base64,
-                          banner_image: base64,
-                        }));
-                      }}
-                    />
-                  </CInputGroup>
-
                   {/* <CInputGroup className="mb-3">
+                    <FileBase64
+                      multiple={false}
+                      onDone={({ base64 }) => {
+                        setFormData((prevFormData) => ({
+                          ...prevFormData,
+                          profile_image: base64,
+                        }));
+                      }}
+                    />
+                  </CInputGroup>
+                  <CInputGroup className="mb-3">
+                    <FileBase64
+                      multiple={false}
+                      onDone={({ base64 }) => {
+                        setFormData((prevFormData) => ({
+                          ...prevFormData,
+                          banner_image: base64,
+                        }));
+                      }}
+                    />
+                  </CInputGroup> */}
+
+                  <CInputGroup className="mb-3">
                     <CInputGroupText
                       component="label"
                       htmlFor="inputGroupFile01"
@@ -383,7 +388,7 @@ const Register = () => {
                       // value={formData.banner_name}
                       onChange={handleChange}
                     />
-                  </CInputGroup> */}
+                  </CInputGroup>
                   <div className="d-grid">
                     <CButton type="submit" color="success">
                       Create Account

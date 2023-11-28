@@ -16,6 +16,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
+      process: "process/browser",
       '@src': '/src',
       '@components': '/src/components',
       '@views': '/src/views',

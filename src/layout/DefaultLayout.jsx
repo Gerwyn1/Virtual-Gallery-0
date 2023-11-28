@@ -10,21 +10,14 @@ import { useNavigate } from "react-router-dom";
 // import {Redirect} from 'react-router-dom'
 // import { useCookies } from 'react-cookie'
 import { isAuthenticated } from "../auth/auth";
-import * as jwtDecode from "jwt-decode";
+import * as jwtDecodeLib from "jwt-decode";
 import axios from "axios";
 
 const DefaultLayout = () => {
   const navigate = useNavigate();
-  const token = localStorage.getItem("jwt");
-  const [user, setUser] = useState(async () => {
-    const userId = jwtDecode.jwtDecode(token).userId;
-    const userExists = await axios.get(`/api/users/profile/${userId}`);
-    if (userExists) {
-      setUser(() => userExists.data);
-    }
-  });
-
-
+  const [user, setUser] = useState({});
+  
+  
   useEffect(() => {
     async function fetchData() {
       if (!isAuthenticated()) {
@@ -33,8 +26,13 @@ const DefaultLayout = () => {
         navigate("/login");
       }
       // else {
-      //   // { headers: { Authorization: `Bearer ${token}` } }
-
+        //   // { headers: { Authorization: `Bearer ${token}` } }
+        const token = localStorage.getItem("jwt");
+        const userId = jwtDecodeLib.jwtDecode(token).userId;
+        const userExists = await axios.get(`/api/users/profile/${userId}`);
+        if (userExists) {
+          setUser(() => userExists.data);
+        }
       //   const userExists = await axios.get(`/api/users/profile/${userId}`);
       //   console.log("authenticated user");
       //   console.log("does user exist?");
@@ -46,7 +44,7 @@ const DefaultLayout = () => {
       // }
     }
     fetchData();
-  }, [navigate, token]);
+  }, [navigate]);
 
   console.log(user);
 
@@ -57,17 +55,16 @@ const DefaultLayout = () => {
         <AppHeader />
         <div className="body flex-grow-1 px-3">
           {
-            // JSON.stringify(user)
             <ul>
               {Object.entries(user).map(([key, value]) => {
                 console.log(key,value)
-                return key === "profile_image" ? (
-                  <img  key={key} src={`/${value.name}`} alt="profile image" />
+                return  key === "profile_image" ? (
+                  <img style={{objectFit:'cover', width:'100px', height: '100px'}} key={key} src={`${import.meta.env.VITE_API_URL}/` + value} alt="profile image" />
                 ) : key === "banner_image" ? (
-                  <img  key={key} src={`/${value.name}`} alt="banner image" />
+                  <img style={{objectFit:'cover', width:'300px', height: '100px'}} key={key} src={`${import.meta.env.VITE_API_URL}/` + value} alt="banner image" />
                 ) : (
                   <li key={key}>
-                    {key}: {value}
+                    {key}: {`${value}`}
                   </li>
                 );
               })}
