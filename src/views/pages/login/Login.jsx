@@ -34,7 +34,9 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const response = await axios.post("/api/users/auth", formData);
+    const response = await axios.post("/api/users/auth", formData, {
+      withCredentials: true,
+    });
     console.log('login response', response);
     if (response.data) {
       localStorage.setItem("jwt", response.data.token);

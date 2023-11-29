@@ -19,110 +19,54 @@ import {
   cilBuilding,
   cilFlagAlt,
 } from "@coreui/icons";
-import { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "@src/api/axios";
-import Cookies from "js-cookie";
-import { useEffect } from "react";
-import { useCookies } from "react-cookie";
+// import Cookies from "js-cookie";
+// import { useCookies } from "react-cookie";
 // import useRefreshToken from "../../../@hooks/useRefreshToken";
-import FileBase64 from "react-file-base64";
+// import FileBase64 from "react-file-base64";
+
+const initialState = {
+  username: "",
+  email: "",
+  password: "",
+  repeatPassword: "",
+  first_name: "",
+  last_name: "",
+  postcode: "",
+  mobile_no: "",
+  address_1: "",
+  address_2: "",
+  company_name: "",
+  country: "",
+  profile_image: "",
+  banner_image: "",
+};
+
+const resetState = (initialState) => {
+  return Object.keys(initialState).reduce((acc, key) => {
+    acc[key] = initialState[key];
+    return acc;
+  }, {});
+};
 
 const Register = () => {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    repeatPassword: "",
-    first_name: "",
-    last_name: "",
-    postcode: "",
-    mobile_no: "",
-    address_1: "",
-    address_2: "",
-    company_name: "",
-    country: "",
-    profile_image: "",
-    banner_image: "",
-  });
+  const [formData, setFormData] = useState(initialState);
   // const refresh = useRefreshToken();
 
-  // const [imageData, setImageData] = useState(new FormData());
-  // console.log(imageData)
+  console.log(formData)
 
   const controller = new AbortController();
-  //   const [cookies, setCookie] = useCookies(['jwt']);
-  // console.log(formData);
-  //   console.log('useCookies: ', cookies)
-
-  //   const cookie = Cookies.get('jwt');
-  //   console.log(cookie)
-  //   console.log(document.cookie);
-  //   const allCookies = Cookies.get();
-  // console.log(allCookies);
-
-  // useEffect(() => {
-  //   // Retrieve the 'jwt' cookie
-  //   const jwtCookie = Cookies.get('jwt');
-
-  //   console.log('JWT Cookie:', jwtCookie);
-  // }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // const form = new FormData();
-    // console.log(form)
-
-    // destructure the form data above (useState)
-    // const {
-    //   username,
-    //   email,
-    //   password,
-    //   repeatPassword,
-    //   first_name,
-    //   last_name,
-    //   postcode,
-    //   mobile_no,
-    //   address_1,
-    //   address_2,
-    //   company_name,
-    //   country,
-    //   profile_image,
-    //   banner_image,
-    // } = formData;
-    // console.log(username)
-    // form.append("username", username);
-    // form.append("email", email);
-    // form.append("password", password);
-    // form.append("repeatPassword", repeatPassword);
-    // form.append("first_name", first_name);
-    // form.append("last_name", last_name);
-    // form.append("postcode", postcode);
-    // form.append("mobile_no", mobile_no);
-    // form.append("address_1", address_1);
-    // form.append("address_2", address_2);
-    // form.append("company_name", company_name);
-    // form.append("country", country);
-    // form.append("profile_image", profile_image);
-    // form.append("banner_image", banner_image);
-
-    // console.log(form)
-    // formData.append("username", username);
-    // formData.append("email", email);
-    // setImageData((prev) => {
-    //   prev.append("profile_image", {});
-    //   prev.append("banner_image", {});
-    //   return;
-    // });
-
     const form = new FormData();
-    // form.append('profile_image', formData.profile_image);
-    // form.append('banner_image', formData.banner_image);
-      Object.entries(formData).forEach(([name, value]) => {
-        form.append(name, value);
-      });
+    Object.entries(formData).forEach(([name, value]) => {
+      form.append(name, value);
+    });
 
     try {
       console.log("sending request");
@@ -132,35 +76,9 @@ const Register = () => {
         withCredentials: true,
         "Content-Type": "multipart/form-data", // Important for file uploads
       });
-      console.log(response);
       localStorage.setItem("jwt", response.data.token);
-      console.log("set jwt in local storage");
-      // Cookies.set("token", response.data.token, {
-      //   sameSite: "strict",
-      //   path: "/",
-      //   expires: new Date(new Date().getTime() + 25 * 1000),
-      //   httpOnly: true,
-      //   // secure: true,
-      // });
-      // console.log(Cookies);
-      // console.log(Cookies.get("token"));
-      // console.log(Cookies.get("token"));
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        repeatPassword: "",
-        first_name: "",
-        last_name: "",
-        postcode: "",
-        mobile_no: "",
-        address_1: "",
-        address_2: "",
-        company_name: "",
-        country: "",
-        profile_image: "",
-        banner_image: "",
-      });
+      
+      setFormData((prevFormData) => resetState(prevFormData));
     } catch (error) {
       console.error(error);
     }
@@ -176,10 +94,10 @@ const Register = () => {
     }));
   };
 
+  const jwtToken = localStorage.getItem("jwt");
   useEffect(() => {
-    const jwtToken = localStorage.getItem("jwt");
     jwtToken ? navigate("/") : null;
-  }, []);
+  }, [navigate, jwtToken]);
 
   return (
     <div className="bg-light min-vh-100 d-flex flex-row align-items-center">

@@ -18,7 +18,8 @@ import { AppBreadcrumb } from './index'
 import { AppHeaderDropdown } from './header/index'
 import { logo } from '../assets/brand/logo'
 
-const AppHeader = () => {
+// eslint-disable-next-line react/prop-types
+const AppHeader = ({user}) => {
   const dispatch = useDispatch()
   const sidebarShow = useSelector((state) => state.sidebarShow)
 
@@ -65,7 +66,7 @@ const AppHeader = () => {
           </CNavItem>
         </CHeaderNav>
         <CHeaderNav className="ms-3">
-          <AppHeaderDropdown />
+          <AppHeaderDropdown user={user}/>
         </CHeaderNav>
       </CContainer>
       <CHeaderDivider />
