@@ -80,7 +80,6 @@ const App = () => {
               path="*"
               name="Home"
               element={<DefaultLayout />}
-              // auth={auth}
             />
             {/* <Route
               path="*"
