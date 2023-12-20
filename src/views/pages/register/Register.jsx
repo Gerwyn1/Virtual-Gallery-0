@@ -56,7 +56,7 @@ const Register = () => {
   const [formData, setFormData] = useState(initialState);
   // const refresh = useRefreshToken();
 
-  console.log(formData)
+  console.log(formData);
 
   const controller = new AbortController();
 
@@ -77,7 +77,7 @@ const Register = () => {
         "Content-Type": "multipart/form-data", // Important for file uploads
       });
       localStorage.setItem("jwt", response.data.token);
-      
+
       setFormData((prevFormData) => resetState(prevFormData));
     } catch (error) {
       console.error(error);
@@ -121,30 +121,7 @@ const Register = () => {
                       name="username"
                     />
                   </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="First name"
-                      autoComplete="first_name"
-                      onChange={handleChange}
-                      value={formData.first_name}
-                      name="first_name"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilUser} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="Last name"
-                      autoComplete="last_name"
-                      onChange={handleChange}
-                      value={formData.last_name}
-                      name="last_name"
-                    />
-                  </CInputGroup>
+
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
                     <CFormInput
@@ -166,91 +143,6 @@ const Register = () => {
                       onChange={handleChange}
                       value={formData.password}
                       name="password"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-4">
-                    <CInputGroupText>
-                      <CIcon icon={cilLockLocked} />
-                    </CInputGroupText>
-                    <CFormInput
-                      type="password"
-                      placeholder="Repeat password"
-                      autoComplete="new-password"
-                      onChange={handleChange}
-                      value={formData.repeatPassword}
-                      name="repeatPassword"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilListNumbered} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="postcode"
-                      autoComplete="postcode"
-                      onChange={handleChange}
-                      value={formData.postcode}
-                      name="postcode"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilListNumbered} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="mobile_no"
-                      autoComplete="mobile_no"
-                      onChange={handleChange}
-                      value={formData.mobile_no}
-                      name="mobile_no"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilAddressBook} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="address_1"
-                      autoComplete="address_1"
-                      onChange={handleChange}
-                      value={formData.address_1}
-                      name="address_1"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilAddressBook} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="address_2"
-                      autoComplete="address_2"
-                      onChange={handleChange}
-                      value={formData.address_2}
-                      name="address_2"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilBuilding} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="company_name"
-                      autoComplete="company_name"
-                      onChange={handleChange}
-                      value={formData.company_name}
-                      name="company_name"
-                    />
-                  </CInputGroup>
-                  <CInputGroup className="mb-3">
-                    <CInputGroupText>
-                      <CIcon icon={cilFlagAlt} />
-                    </CInputGroupText>
-                    <CFormInput
-                      placeholder="country"
-                      autoComplete="country"
-                      onChange={handleChange}
-                      value={formData.country}
-                      name="country"
                     />
                   </CInputGroup>
 
