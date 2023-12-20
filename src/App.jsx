@@ -4,7 +4,7 @@ import "./scss/style.scss";
 import Loading from "@src/views/pages/GalleryLoading.jsx";
 import AuthApi from "./auth/AuthApi";
 // import ProtectedRoute from './components/ProtectedRoute'
-import ProfileImageUpload from "./views/pages/ProfileImageUpload";
+// import ProfileImageUpload from "./views/pages/ProfileImageUpload";
 // import jwt from 'jsonwebtoken';
 import Media from "./views/pages/media/Media";
 
@@ -29,8 +29,6 @@ const App = () => {
   //   .split('; '))
   // const jwtToken = Cookies.get("jwt");
   // console.log(jwtToken);
-
-
 
   // if (jwtToken) {
   //   try {
@@ -83,12 +81,6 @@ const App = () => {
               name="Home"
               element={<DefaultLayout />}
             />
-            {/* <Route
-              path="*"
-              name="Home"
-              element={'hello world'}
-              // auth={auth}
-            /> */}
           </Routes>
         </Suspense>
       </BrowserRouter>
