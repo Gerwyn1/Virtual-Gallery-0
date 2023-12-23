@@ -1,7 +1,7 @@
 import React from 'react'
-import Media from './views/pages/media/Media'
 
 const Dashboard = React.lazy(() => import('@views/dashboard/Dashboard'))
+const Media = React.lazy(() => import('@views/media/Media'))
 
 
 const routes = [

@@ -1,5 +1,5 @@
 import CIcon from "@coreui/icons-react";
-import { cilSpeedometer, cilStar } from "@coreui/icons";
+import { cibFlipboard, cilSpeedometer, cilStar } from "@coreui/icons";
 import { CNavGroup, CNavItem } from "@coreui/react";
 
 const _nav = [
@@ -8,6 +8,12 @@ const _nav = [
     name: "Dashboard",
     to: "/dashboard",
     icon: <CIcon icon={cilSpeedometer} customClassName="nav-icon" />,
+  },
+  {
+    component: CNavItem,
+    name: "Media",
+    to: "/media",
+    icon: <CIcon icon={cibFlipboard} customClassName="nav-icon" />,
   },
   {
     component: CNavGroup,
@@ -24,11 +30,7 @@ const _nav = [
         name: "Register",
         to: "/register",
       },
-      {
-        component: CNavItem,
-        name: "Media",
-        to: "/media",
-      },
+
       {
         component: CNavItem,
         name: "Error 404",

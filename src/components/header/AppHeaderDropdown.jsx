@@ -32,8 +32,6 @@ import axios from '../../api/axios'
 // eslint-disable-next-line react/prop-types
 const AppHeaderDropdown = ({user}) => {
 
-console.log(user)
-
   //  useEffect(() => {
   //   const getAvatar = async () => {
   //     try {

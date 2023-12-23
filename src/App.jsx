@@ -6,7 +6,7 @@ import AuthApi from "./auth/AuthApi";
 // import ProtectedRoute from './components/ProtectedRoute'
 // import ProfileImageUpload from "./views/pages/ProfileImageUpload";
 // import jwt from 'jsonwebtoken';
-import Media from "./views/pages/media/Media";
+// import Media from "./views/pages/media/Media";
 
 const loading = (
   <div className="pt-3 text-center">
@@ -65,7 +65,7 @@ const App = () => {
       <BrowserRouter>
         <Suspense fallback={loading}>
           <Routes>
-            <Route path="/media" name="Media Page" element={<Media />} />
+            {/* <Route path="/media" name="Media Page" element={<Media />} /> */}
             <Route path="/login" name="Login Page" element={<Login />} />
             <Route
               path="/register"
