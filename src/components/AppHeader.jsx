@@ -25,7 +25,7 @@ const AppHeader = ({ user }) => {
 
   return (
     <CHeader position="sticky" className="mb-4">
-      <CContainer fluid="true">
+      <CContainer>
         <CHeaderToggler
           className="ps-1"
           onClick={() => dispatch({ type: "set", sidebarShow: !sidebarShow })}
@@ -35,6 +35,7 @@ const AppHeader = ({ user }) => {
         <CHeaderBrand className="mx-auto d-md-none" to="/">
           <CIcon icon={logo} height={48} alt="Logo" />
         </CHeaderBrand>
+        {/* 3 TEXTS */}
         <CHeaderNav className="d-none d-md-flex me-auto">
           <CNavItem>
             <CNavLink to="/dashboard" component={NavLink}>
@@ -48,6 +49,7 @@ const AppHeader = ({ user }) => {
             <CNavLink href="/settings">Settings</CNavLink>
           </CNavItem>
         </CHeaderNav>
+        {/* 3 ICONS - BELL, LIST, MAIL */}
         <CHeaderNav>
           <CNavItem>
             <CNavLink href="/notifications">
@@ -65,12 +67,13 @@ const AppHeader = ({ user }) => {
             </CNavLink>
           </CNavItem>
         </CHeaderNav>
+        {/* PROFILE */}
         <CHeaderNav className="ms-3">
           <AppHeaderDropdown user={user} />
         </CHeaderNav>
       </CContainer>
       <CHeaderDivider />
-      <CContainer fluid="true">
+      <CContainer>
         <AppBreadcrumb />
       </CContainer>
     </CHeader>

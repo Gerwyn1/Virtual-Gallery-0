@@ -44,7 +44,6 @@ const DefaultLayout = () => {
     fetchData();
   }, [navigate]);
 
-
   const location = useLocation();
   const currentPath = location.pathname; // comes after the root url
 
@@ -52,14 +51,13 @@ const DefaultLayout = () => {
     <div>
       <AppSidebar />
       <div className="wrapper d-flex flex-column min-vh-100 bg-light">
-        <AppHeader user={user}/>
+        <AppHeader user={user} />
         <div className="body flex-grow-1 px-3">
           {currentPath.endsWith("profile") ? (
             <CListGroup>
               {Object.entries(user).map(([key, value]) => {
-                console.log(key, value);
                 return key === "profile_image" ? (
-                  <CListGroupItem>
+                  <CListGroupItem key={key}>
                     <img
                       style={{
                         objectFit: "cover",
@@ -72,7 +70,7 @@ const DefaultLayout = () => {
                     />
                   </CListGroupItem>
                 ) : key === "banner_image" ? (
-                  <CListGroupItem>
+                  <CListGroupItem key={key}>
                     <img
                       style={{
                         objectFit: "contain",

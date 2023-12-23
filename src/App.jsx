@@ -65,7 +65,6 @@ const App = () => {
       <BrowserRouter>
         <Suspense fallback={loading}>
           <Routes>
-            {/* <Route path="/media" name="Media Page" element={<Media />} /> */}
             <Route path="/login" name="Login Page" element={<Login />} />
             <Route
               path="/register"
@@ -75,12 +74,8 @@ const App = () => {
             <Route path="/404" name="Page 404" element={<Page404 />} />
             <Route path="/500" name="Page 500" element={<Page500 />} />
             <Route path="/gallery" name="Gallery" element={<Loading />} />
-            {/* <Route path="/profile-upload" name="Profile Upload" element={<ProfileImageUpload />} /> */}
-            <Route
-              path="*"
-              name="Home"
-              element={<DefaultLayout />}
-            />
+
+            <Route path="*" name="Home" element={<DefaultLayout />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
