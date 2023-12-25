@@ -61,7 +61,7 @@ const App = () => {
   // }
 
   return (
-    <AuthApi.Provider value={{ auth, setAuth }}>
+  
       <BrowserRouter>
         <Suspense fallback={loading}>
           <Routes>
@@ -79,8 +79,10 @@ const App = () => {
           </Routes>
         </Suspense>
       </BrowserRouter>
-    </AuthApi.Provider>
   );
 };
 
 export default App;
+
+
+  // <AuthApi.Provider value={{ auth, setAuth }}>

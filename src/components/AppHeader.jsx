@@ -21,14 +21,14 @@ import { logo } from "../assets/brand/logo";
 // eslint-disable-next-line react/prop-types
 const AppHeader = ({ user }) => {
   const dispatch = useDispatch();
-  const sidebarShow = useSelector((state) => state.sidebarShow);
+  // const sidebarShow = useSelector((state) => state.sidebarShow);
 
   return (
     <CHeader position="sticky" className="mb-4">
       <CContainer>
         <CHeaderToggler
           className="ps-1"
-          onClick={() => dispatch({ type: "set", sidebarShow: !sidebarShow })}
+          // onClick={() => dispatch({ type: "set", sidebarShow: !sidebarShow })}
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
